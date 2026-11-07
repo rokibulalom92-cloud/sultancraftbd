@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SULTAN CRAFT PRO SHOP - BD </title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Hind Siliguri',sans-serif}
+body{background:#f1f3f6;color:#222}
+a{text-decoration:none;color:inherit}
+.topbar{background:#0d1b2a;color:#fff;font-size:13px;padding:7px 5%;display:flex;justify-content:space-between}
+.topbar b{color:#FFD700}
+header{position:sticky;top:0;z-index:100;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.1);padding:12px 5%;display:flex;align-items:center;gap:15px;flex-wrap:wrap}
+.logo{font-family:'Poppins';font-weight:800;font-size:22px;line-height:1;color:#0d1b2a}
+.logo span{color:#ef4a23;font-size:13px;letter-spacing:1px}
+.search-box{flex:1;display:flex;min-width:220px}
+.search-box input{flex:1;padding:12px 15px;border:2px solid #ef4a23;border-right:none;border-radius:8px 0 0 8px;outline:none;font-size:15px}
+.search-box button{background:#ef4a23;color:#fff;border:none;padding:0 20px;border-radius:0 8px 8px 0;font-weight:700;cursor:pointer}
+.h-btn{padding:10px 16px;border-radius:8px;font-weight:600;cursor:pointer;border:none}
+.h-cart{background:#0d1b2a;color:#fff}
+.h-admin{background:#FFD700}
+.h-offer{background:#ffe8e0;color:#ef4a23}
+nav{background:#0d1b2a;color:#fff;padding:0 5%;display:flex;gap:20px;overflow-x:auto;font-size:14px}
+nav button{background:none;border:none;color:#fff;padding:12px 5px;cursor:pointer;white-space:nowrap}
+nav button.active{color:#FFD700;border-bottom:3px solid #FFD700;font-weight:700}
+.main{max-width:1280px;margin:15px auto;padding:0 12px;display:flex;gap:15px;align-items:flex-start}
+.sidebar{width:230px;background:#fff;border-radius:10px;padding:15px;box-shadow:0 1px 5px rgba(0,0,0,.08);position:sticky;top:130px}
+.sidebar h4{border-bottom:2px solid #ef4a23;padding-bottom:8px;margin-bottom:10px}
+.sidebar button{display:block;width:100%;text-align:left;background:none;border:none;padding:9px 8px;cursor:pointer;border-radius:6px;font-size:15px}
+.sidebar button:hover,.sidebar button.active{background:#fff1ec;color:#ef4a23;font-weight:700}
+.content{flex:1}
+.banner{background:linear-gradient(90deg,#0d1b2a,#ef4a23);color:#fff;border-radius:12px;padding:28px 25px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
+.banner h1{font-family:'Poppins';font-size:28px;line-height:1.2}
+.banner h1 span{color:#FFD700}
+.banner p{opacity:.9;margin:8px 0}
+.banner button{background:#FFD700;border:none;padding:12px 22px;border-radius:8px;font-weight:700;cursor:pointer}
+.banner img{width:300px;height:200px;object-fit:contain;border-radius:10px}
+.section{margin-top:18px;background:#fff;border-radius:10px;padding:16px;box-shadow:0 1px 5px rgba(0,0,0,.06)}
+.section-title{display:flex;justify-content:space-between;align-items:center;border-left:4px solid #ef4a23;padding-left:10px;margin-bottom:14px}
+.section-title h3{font-size:18px}
+.section-title span{background:#ef4a23;color:#fff;padding:3px 10px;border-radius:20px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.card{border:1px solid #eee;border-radius:10px;overflow:hidden;background:#fff;transition:.2s;position:relative}
+.card:hover{box-shadow:0 5px 15px rgba(0,0,0,.12);transform:translateY(-2px)}
+.card img{width:100%;height:180px;object-fit:cover}
+.badge{position:absolute;top:10px;left:10px;background:#ef4a23;color:#fff;font-size:12px;padding:3px 8px;border-radius:20px}
+.card-body{padding:12px}
+.card-body h4{font-size:15px;min-height:40px}
+.card-body small{color:#888}
+.stars{color:#FFB800;font-size:13px}
+.old-price{color:#999;text-decoration:line-through;font-size:13px;margin-left:5px}
+.new-price{color:#ef4a23;font-weight:800;font-size:19px}
+.add-btn{width:100%;margin-top:10px;padding:10px;border:none;border-radius:8px;font-weight:700;cursor:pointer;background:#0d1b2a;color:#fff}
+.add-btn:hover{background:#ef4a23}
+.buy-btn{width:100%;margin-top:6px;padding:10px;border:none;border-radius:8px;font-weight:700;cursor:pointer;background:#FFD700;color:#000}
+/* CART DRAWER */
+.drawer{position:fixed;right:-400px;top:0;width:380px;max-width:94%;height:100%;background:#fff;z-index:300;transition:.3s;padding:18px;overflow-y:auto;box-shadow:-5px 0 20px rgba(0,0,0,.2)}
+.drawer.open{right:0}
+.drawer h3{color:#0d1b2a}
+.cart-item{display:flex;gap:10px;background:#f8f9fa;padding:9px;border-radius:10px;margin-bottom:9px}
+.cart-item img{width:55px;height:55px;object-fit:cover;border-radius:8px}
+.qty{background:#0d1b2a;color:#fff;border:none;width:24px;height:24px;border-radius:50%;cursor:pointer}
+.form-box{background:#f8f9fa;padding:14px;border-radius:12px;margin-top:14px;border:1px solid #eee}
+.form-box input{width:100%;padding:11px;margin:5px 0;border-radius:8px;border:1px solid #ddd;outline:none;background:#fff}
+.pay-opt{display:block;background:#fff;padding:10px;border-radius:8px;margin:5px 0;cursor:pointer;font-size:14px;border:1px solid #eee}
+#trxBox{display:none;background:#fffbe6;padding:11px;border-radius:8px;margin-top:8px;border:1px dashed #ef4a23}
+.checkout{background:#25D366;color:#fff;width:100%;padding:13px;border:none;border-radius:10px;font-weight:700;font-size:16px;cursor:pointer;margin-top:10px}
+/* ADMIN */
+.admin{max-width:1280px;margin:20px auto;background:#0d1b2a;color:#fff;padding:20px;border-radius:12px}
+.admin input,.admin select{width:100%;padding:11px;margin:5px 0;border-radius:8px;border:1px solid #444;background:#1a2a3a;color:#fff;outline:none}
+.save-btn{background:#FFD700;width:100%;padding:12px;border:none;border-radius:8px;font-weight:700;cursor:pointer;margin-top:6px}
+.edit-card{background:#fff;color:#222;padding:13px;border-radius:10px;margin-top:12px}
+.edit-card input,.edit-card select{width:100%;padding:9px;margin:4px 0;border-radius:8px;border:1px solid #ddd;background:#fff;color:#222}
+.update-btn{background:#00c853;color:#fff;width:100%;padding:11px;border:none;border-radius:8px;font-weight:700;cursor:pointer;margin-top:5px}
+.del-btn{background:#ff4444;color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+footer{background:#0d1b2a;color:#bbb;text-align:center;padding:25px;line-height:1.7;margin-top:20px}
+@media(max-width:768px){.sidebar{display:none}.banner img{display:none}.topbar{display:none}}
+</style>
+</head>
+<body>
+
+<div class="topbar"><span>📍ঢাকা এয়ারপোর্ট | 🚚 সারা বাংলাদেশে হোম ডেলিভারি <br> ২৪/৭ নিশ্চিত কল / তথ‌্য সেবা </span><span>📞 Hotline: <b>01735697468</b> | 💬 WhatsApp অর্ডার করুন হোয়াটসঅ‌্যাপেও</span></div>
+
+<header>
+  <div class="logo">SULTAN CRAFT<br><span>PRO - BD</span></div>
+  <div class="search-box"><input id="search" placeholder="🔍 প্রোডাক্ট খুঁজুন - বোরকা, থ্রি - পিছ, পাঞ্জাবী, ইত্যাদি" oninput="showProducts()"><button onclick="showProducts()">SEARCH</button></div>
+  <button class="h-btn h-offer" onclick="setCat('সব',null)">🔥 OFFERS</button>
+  <button class="h-btn h-cart" onclick="openCart()">🛒 কার্ট (<span id="cartCount">0</span>)</button>
+</header>
+
+<nav>
+  <button class="active" onclick="setCat('সব',this)">🏠 হোম</button>
+  <button onclick="setCat('বোরকা',this)">বোরকা</button>
+  <button onclick="setCat('পাঞ্জাবী',this)">পাঞ্জাবী</button>
+  <button onclick="setCat('থ্রি - পিছ',this)">থ্রি - পিছ</button>
+  <button onclick="setCat('অন্যান্য',this)">✦ অন্যান্য</button>
+  <button onclick="document.getElementById('orderForm').scrollIntoView({behavior:'smooth'})">📋 অর্ডার করুন</button>
+</nav>
+
+<div class="main">
+  <div class="sidebar">
+    <h4>📂 ক্যাটাগরি</h4>
+ <button onclick="setCat('বোরকা',this)">বোরকা</button>
+<button onclick="setCat('পাঞ্জাবী',this)">পাঞ্জাবী</button>
+<button onclick="setCat('থ্রি - পিছ',this)">থ্রি - পিছ</button>
+<button onclick="setCat('অন্যান্য',this)">✦ অন্যান্য</button>
+    <button onclick="setCat('অন্যান্য',this)">থ্রি - পিছ</button>
+    <div style="background:#fff1ec;padding:12px;border-radius:8px;margin-top:12px">
+      <b style="color:#ef4a23">🎉 ফ্রি ডেলিভারি!</b><br><small> ১০০০৳+ অর্ডারে ঢাকার ভেতরে ফ্রি হোম ডেলিভারি</small>
+    </div>
+    <div style="background:#e8f5e9;padding:12px;border-radius:8px;margin-top:10px">
+      <b>💳 পেমেন্ট</b><br><small>বিকাশ / নগদ / রকেট / ক্যাশ অন ডেলিভারি</small>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="banner">
+      <div>
+        <span style="background:#FFD700;color:#000;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:700">🔥 MEGA SALE - ৩০% ছাড়</span><br><br>
+
+        <h1>প্রিমিয়াম কোয়ালিটির পাঞ্জাবী<br><br><span> প্রিমিয়াম কোয়ালিটির থ্রি - পিছ</span></h1><br>
+
+        <p> নিখুত ‍সেলাই আর সেরা মানের প্রোডাক্ট — অরিজিনাল প্রোডাক্ট ১০০% গ্যারান্টি</p>
+        <button onclick="document.getElementById('productsSec').scrollIntoView({behavior:'smooth'})">🛍️ এখনই কিনুন →</button>
+        <button onclick="openCart()" style="background:#fff;color:#000;margin-left:6px">📝 অর্ডার করুন</button>
+      </div>
+      <img src="karkhana.jpg">
+    </div>
+<div style="background:#fff;padding:20px;border-radius:15px;display:flex;align-items:center;gap:18px;box-shadow:0 5px 20px rgba(0,0,0,0.08);margin:20px 0;border:1px solid #ffe8cc">
+  
+  <img src="sultan.jpg" style="width:120px;height:120px;border-radius:50%;object-fit:cover;border:4px solid #ff6b00;box-shadow:0 0 0 3px #fff, 0 0 0 6px #ffd9b0;flex-shrink:0">
+  
+  <div>
+    <div style="font-size:12px;color:hsl(321, 100%, 50%);font-weight:800;letter-spacing:1px">FOUNDER & CEO</div>
+    <div style="font-size:23px;font-weight:900;color:#222;margin:2px 0">এস.এম সুলতান মাহমুদ</div>
+    <div style="font-size:14px;color:#666;line-height:1.5">সুলতান ক্রাফট প্রো বিডি-এর প্রতিষ্ঠাতা। আমরা ১০০% অরিজিনাল প্রোডাক্ট সরাসরি নিজস্ব তৈরী কারখানা থেকে এনে আপনাদের হাতে পৌঁছে দেই। কথা দিচ্ছি, ঠকবেন না ইনশাআল্লাহ।</div>
+    <div style="margin-top:10px">
+      <span style="background:#e8f5e9;color:#2e7d32;padding:5px 10px;border-radius:20px;font-size:12px;font-weight:700">✔️ Verified Seller</span>
+      <span style="background:#fff3e0;color:#e65100;padding:5px 10px;border-radius:20px;font-size:12px;font-weight:700;margin-left:5px">⭐ 4.9 Rating</span>
+    </div>
+  </div>
+</div>
+    <div class="section">
+      <div class="section-title"><h3>⚡ ফ্ল্যাশ সেল - আজকের অফার</h3><span>অফার শেষ হতে বাকি সময়: 12:00:00</span></div>
+      <div class="grid" id="flashGrid"></div>
+    </div>
+
+    <div class="section" id="productsSec">
+      <div class="section-title"><h3>⭐ Featured Products - সেরা প্রোডাক্ট</h3><span id="prodCount">4 Products</span></div>
+      <div class="grid" id="products"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><h3>🏆 কেন আমাদের থেকে কিনবেন?</h3></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;text-align:center">
+        <div style="background:#f8f9fa;padding:15px;border-radius:10px"><div style="font-size:28px">🚚</div><b>দক্ষ কারিগর দারা নিখুত সেলাই</b><br><br><small>৬৪ জেলায় ১-৩ দিনে</small></div>
+        <div style="background:#f8f9fa;padding:15px;border-radius:10px"><div style="font-size:28px">🚚</div><b>দ্রুত ডেলিভারি</b><br><small>৬৪ জেলায় ১-৩ দিনে</small></div>
+        <div style="background:#f8f9fa;padding:15px;border-radius:10px"><div style="font-size:28px">✅</div><b>১০০% অরিজিনাল</b><br><small>নকল প্রমাণে টাকা ফেরত</small></div>
+        <div style="background:#f8f9fa;padding:15px;border-radius:10px"><div style="font-size:28px">💳</div><b>সহজ পেমেন্ট</b><br><small>বিকাশ / নগদ / ক্যাশ অন ডেলিভারি</small></div>
+        <div style="background:#f8f9fa;padding:15px;border-radius:10px"><div style="font-size:28px">🔄</div><b>৭ দিনে রিটার্ন</b><br><small>সহজ এক্সচেঞ্জ সুবিধা</small></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OWNER ADMIN -->
+<div class="admin" id="adminPanel" style="display:none">
+  <h3 style="color:#FFD700">👑SULTAN CRAFT PANEL</h3>
+  <p style="font-size:13px;color:#aaa">PASSWORD:sultan2233 <b style="color:#FFD700">admin123</b>SULTAN</p>
+  <input id="adminPass" type="password" placeholder="🔑 Admin Password ()">
+  <h4 style="margin-top:14px">➕ নতুন পণ্য আপলোড করুন</h4>
+  <input id="pName" placeholder="পণ্যের নাম">
+  <input id="pPrice" type="number" placeholder="দাম - যেমন 1290">
+  <input id="pOldPrice" type="number" placeholder="আগের দাম (অফার দেখাতে) - যেমন 1990, না থাকলে খালি রাখুন">
+  <input id="pImg" placeholder="ছবির লিংক">
+  <select id="pCat"><option>বোরকা</option><option>পাঞ্জাবী</option><option>থ্রি - পিছ</option><option>অন্যান্য</option></select>
+  <button class="save-btn" onclick="addProduct()">+ পণ্য আপলোড করুন</button>
+  <h4 style="margin-top:20px">📋 পুরনো পণ্য এডিট / ডিলিট</h4>
+  <div id="adminList"></div>
+</div>
+
+<!-- CART + ORDER -->
+<div class="drawer" id="drawer">
+  <div style="display:flex;justify-content:space-between"><h3>🛒 আপনার কার্ট</h3><button onclick="closeCart()" style="background:none;border:none;font-size:22px;cursor:pointer">✕</button></div>
+  <div id="cartItems" style="margin-top:12px"></div>
+  <div style="display:flex;justify-content:space-between;margin-top:10px;font-size:18px"><span>মোট:</span><b id="cartTotal" style="color:#ef4a23">৳0</b></div>
+  <div class="form-box">
+    <h3 style="color:#ef4a23">📝 অর্ডার ফর্ম</h3>
+    <input id="cName" placeholder="* আপনার পুরো নাম">
+    <input id="cPhone" placeholder="* মোবাইল নম্বর">
+    <input id="cAddr" placeholder="* সম্পূর্ণ ঠিকানা - গ্রাম, থানা, জেলা">
+    <input id="cNote" placeholder="নোট (ঐচ্ছিক) - কালার / সাইজ">
+    <h4 style="color:#ef4a23;margin:12px 0 6px">💳 পেমেন্ট অপশন</h4>
+    <label class="pay-opt"><input type="radio" name="pay" value="ক্যাশ অন ডেলিভারি" checked onchange="showTrx()"> 💵 ক্যাশ অন ডেলিভারি</label>
+    <label class="pay-opt"><input type="radio" name="pay" value="বিকাশ" onchange="showTrx()"> 💗 বিকাশ - 01735697468</label>
+    <label class="pay-opt"><input type="radio" name="pay" value="নগদ" onchange="showTrx()"> 🧡 নগদ - 01735697468</label>
+    <label class="pay-opt"><input type="radio" name="pay" value="রকেট" onchange="showTrx()"> 💜 রকেট - 01735697468</label>
+    <div id="trxBox"><p style="font-size:13px">👉 <b id="payText">বিকাশ</b> - 01735697468 এ Send Money করে Transaction ID দিন।</p><input id="trxId" placeholder="* Transaction ID"></div>
+    <button class="checkout" onclick="placeOrder()">✅ অর্ডার কনফার্ম করুন</button>
+  </div>
+</div>
+
+<footer>
+  <b style="color:#fff;font-size:17px">SULTAN CRAFT PRO - BD</b><br><br>
+  Head Office: দিয়া বাড়ি, উত্তরা, ঢাকা, বাংলাদেশ ।<br>
+   আমাদের সাথে যোগাযোগ এরে মাধ‌্যম..<br>
+  WhatsApp: 01621660870<br>01735697468 | Email: officialsultanmahmud@gmail.com <br>© 2026 Sultan Craft PRO BD<br>
+  <!-- সোশ্যাল লিংক সেকশন -->
+<div style="text-align:center;padding:20px 10px;background:#fff;border-radius:15px;margin:20px 0;border:1px solid #ffe8cc">
+  <div style="font-size:17px;font-weight:900;color:#222;margin-bottom:12px">আমাদের সাথে যুক্ত থাকুন 👇</div>
+  <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+
+    <a href=" https://www.facebook.com/share/1FYajeExNL/" target="_blank" style="background:#1877F2;color:#fff;padding:10px 16px;border-radius:25px;text-decoration:none;font-weight:700;font-size:14px">📘 Facebook</a>
+
+    <a href=" https://www.facebook.com/share/1MYkrNfPB4/" target="_blank" style="background:#1877F2;color:#fff;padding:10px 16px;border-radius:25px;text-decoration:none;font-weight:700;font-size:14px">📘 Facebook</a>
+
+    <a href="https://www.tiktok.com/@sultanmahmud0353?_r=1&_t=ZS-9BCEOu0AqEm" target="_blank" style="background:#000;color:#fff;padding:10px 16px;border-radius:25px;text-decoration:none;font-weight:700;font-size:14px">🎵 TikTok</a>
+
+    <a href=" ইউটিউব লিংক" target="_blank" style="background:#FF0000;color:#fff;padding:10px 16px;border-radius:25px;text-decoration:none;font-weight:700;font-size:14px">▶️ YouTube</a>
+
+    <a href="https://www.instagram.com/uniquepanjabipoint?dlrf=MXRwMXJjdzBwdTE1eQ==" target="_blank" style="background:#E1306C;color:#fff;padding:10px 16px;border-radius:25px;text-decoration:none;font-weight:700;font-size:14px">📸 Instagram</a>
+
+    <a href="https://wa.me/01621660807" target="_blank" style="background:#25D366;color:#fff;padding:10px 16px;border-radius:25px;text-decoration:none;font-weight:700;font-size:14px">💬 WhatsApp</a>
+  </div>
+  <div style="font-size:18px;color:#f70606;margin-top:12px">যেকোনো প্রয়োজনে মেসেজ করুন, দ্রুত রিপ্লাই পাবেন ইনশাআল্লাহ</div>
+</div>
+  <br><button onclick="openAdmin()" style="background:none;border:none;color:hsl(130, 97%, 47%);font-size:8px;cursor:pointer;margin-top:10px">• Admin Login •</button>
+</footer>
+
+<script>
+let products = JSON.parse(localStorage.getItem('SC_STAR')) || [
+ {name:"প্রিমিয়াম বোরকা - Black",price:1290,old:1990,cat:"বোরকা",img:"karkhana.jpg"},
+{name:"প্রিমিয়াম পাঞ্জাবী, ১০০% কটন",price:890,old:1290,cat:"পাঞ্জাবী",img:"karkhana.jpg"},
+{name:"প্রিমিয়াম থ্রি - পিছ, ১০০% কটন - সব কালার আছে",price:1490,old:1990,cat:"থ্রি - পিছ",img:"karkhana.jpg"},
+{name:"প্রিমিয়াম টি শার্ট, ১০০% কটন - সব কালার এবং সাইজ আছে",price:1890,old:2590,cat:"টি শার্ট",img:"karkhana.jpg"},
+{name:"কম্বো প্যাক - 6 Pcs",price:750,old:990,cat:"আধুনিক ডিজাইনের পোশাক",img:"karkhana.jpg"},
+{name:"ফ্যামিলি কম্বো Set",price:1150,old:1590,cat:"পাঞ্জাবী ও বোরকা",img:"karkhana.jpg"}];
+let cart = JSON.parse(localStorage.getItem('SC_STAR_CART')) || [];
+let currentCat="সব";
+function save(){localStorage.setItem('SC_STAR',JSON.stringify(products));localStorage.setItem('SC_STAR_CART',JSON.stringify(cart));}
+function setCat(c,el){currentCat=c;document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));if(el)el.classList.add('active');document.querySelectorAll('.sidebar button').forEach(b=>b.classList.remove('active'));showProducts();}
+function cardHTML(p,idx){
+  let off = p.old ? Math.round((1-p.price/p.old)*100) : 0;
+  return `<div class="card">${off?`<span class="badge">-${off}% OFF</span>`:''}<img src="${p.img}" onerror="this.src='https://via.placeholder.com/400'"><div class="card-body"><small style="color:#ef4a23">${p.cat}</small><h4>${p.name}</h4><div class="stars">★★★★★ <span style="color:#888">(120)</span></div><div><span class="new-price">৳${p.price}</span>${p.old?`<span class="old-price">৳${p.old}</span>`:''}</div><button class="add-btn" onclick="addToCart(${idx})">🛒 Add to Cart</button><button class="buy-btn" onclick="buyNow(${idx})">⚡ Buy Now - অর্ডার ফর্ম</button></div></div>`
+}
+function showProducts(){
+  let q=document.getElementById('search').value.toLowerCase();
+  let list=products.filter(p=>(currentCat==='সব'||p.cat===currentCat) && p.name.toLowerCase().includes(q));
+  document.getElementById('products').innerHTML=list.map(p=>cardHTML(p,products.indexOf(p))).join('')||'<p style="padding:20px">কোনো প্রোডাক্ট পাওয়া যায়নি</p>';
+  document.getElementById('prodCount').innerText=list.length+' Products';
+  document.getElementById('flashGrid').innerHTML=products.slice(0,4).map(p=>cardHTML(p,products.indexOf(p))).join('');
+  showAdminList();
+}
+function addToCart(idx){let ex=cart.find(c=>c.name===products[idx].name);if(ex)ex.qty++;else cart.push({...products[idx],qty:1});save();showCart();alert('কার্টে যোগ হয়েছে ✅');}
+function buyNow(idx){addToCart(idx);openCart();}
+function showCart(){
+  document.getElementById('cartCount').innerText=cart.reduce((a,c)=>a+c.qty,0);
+  document.getElementById('cartTotal').innerText='৳'+cart.reduce((a,c)=>a+c.price*c.qty,0);
+  document.getElementById('cartItems').innerHTML=cart.map((c,i)=>`<div class="cart-item"><img src="${c.img}"><div style="flex:1"><b>${c.name}</b><br>৳${c.price} x ${c.qty} = ৳${c.price*c.qty}<br><button class="qty" onclick="changeQty(${i},-1)">-</button> <button class="qty" onclick="changeQty(${i},1)">+</button> <button onclick="delCart(${i})" style="background:none;border:none;cursor:pointer">🗑️</button></div></div>`).join('')||'<p>কার্ট খালি</p>';
+}
+function changeQty(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);save();showCart();}
+function delCart(i){cart.splice(i,1);save();showCart();}
+function openCart(){document.getElementById('drawer').classList.add('open');showCart();}
+function closeCart(){document.getElementById('drawer').classList.remove('open');}
+function showTrx(){let pay=document.querySelector('input[name="pay"]:checked').value;if(pay==='ক্যাশ অন ডেলিভারি'){document.getElementById('trxBox').style.display='none';}else{document.getElementById('trxBox').style.display='block';document.getElementById('payText').innerText=pay;}}
+function placeOrder(){
+  if(cart.length===0) return alert('কার্ট খালি!');
+  let name=document.getElementById('cName').value.trim();
+  let phone=document.getElementById('cPhone').value.trim();
+  let addr=document.getElementById('cAddr').value.trim();
+  let note=document.getElementById('cNote').value.trim();
+  let pay=document.querySelector('input[name="pay"]:checked').value;
+  let trx=document.getElementById('trxId').value.trim();
+  if(!name||!phone||!addr) return alert('নাম, ফোন, ঠিকানা দিন!');
+  if(phone.length<11) return alert('সঠিক মোবাইল নম্বর দিন!');
+  if(pay!=='ক্যাশ অন ডেলিভারি' && !trx) return alert('Transaction ID দিন!');
+  let msg=`🛍️ নতুন অর্ডার - SULTAN CRAFT PRO BD%0A%0A👤 নাম: ${name}%0A📞 ফোন: ${phone}%0A📍 ঠিকানা: ${addr}%0A📝 নোট: ${note||'নাই'}%0A💳 পেমেন্ট: ${pay}%0A${trx?'🔢 TrxID: '+trx+'%0A':''}%0A📦 প্রোডাক্ট:%0A`+cart.map(c=>`• ${c.name} - ${c.qty} x ৳${c.price} = ৳${c.qty*c.price}`).join('%0A')+`%0A%0A💰 মোট: ৳${cart.reduce((a,c)=>a+c.price*c.qty,0)}`;
+  window.open('https://wa.me/8801927440039?text='+msg,'_blank');
+  alert('অর্ডার সফল ✅ WhatsApp এ মেসেজ চলে গেছে');
+  cart=[];save();showCart();
+}
+function openAdmin(){
+  let p = prompt('PASSWORD');
+  if(p === 'sultan2233'){
+    document.getElementById('adminPanel').style.display = 'block';
+    document.getElementById('adminPanel').scrollIntoView({behavior:'smooth'});
+    document.getElementById('adminPass').value = 'admin123';
+  } else if(p !== null){
+    alert('ভুল পাসওয়ার্ড!');
+  }
+}
+function checkPass(){if(document.getElementById('adminPass').value!=='admin123'){alert('ভুল পাসওয়ার্ড!');return false;}return true;}
+function addProduct(){
+  if(!checkPass()) return;
+  let name=document.getElementById('pName').value.trim();
+  let price=+document.getElementById('pPrice').value;
+  let old=+document.getElementById('pOldPrice').value || 0;
+  let img=document.getElementById('pImg').value.trim() || 'https://via.placeholder.com/400';
+  let cat=document.getElementById('pCat').value;
+  if(!name||!price) return alert('নাম ও দাম দিন!');
+  products.unshift({name,price,old,cat,img});save();showProducts();
+  document.getElementById('pName').value='';document.getElementById('pPrice').value='';document.getElementById('pOldPrice').value='';document.getElementById('pImg').value='';
+  alert('✅ নতুন পণ্য আপলোড হয়েছে!');
+}
+function showAdminList(){
+  document.getElementById('adminList').innerHTML = products.map((p,i)=>`
+  <div class="edit-card">
+    <div style="display:flex;gap:10px;align-items:center">
+      <img src="${p.img}" id="prev-${i}" style="width:60px;height:60px;object-fit:cover;border-radius:8px">
+      <div style="flex:1"><b>${p.name}</b><br><small>${p.cat} | দাম: ৳${p.price} ${p.old?`| আগের দাম: ৳${p.old}`:''}</small></div>
+      <button class="del-btn" onclick="deleteProduct(${i})">ডিলিট</button>
+    </div>
+    <input id="ename-${i}" value="${p.name}" placeholder="পণ্যের নাম">
+    <input id="eprice-${i}" type="number" value="${p.price}" placeholder="দাম">
+    <input id="eold-${i}" type="number" value="${p.old||''}" placeholder="আগের দাম">
+    <input id="eimg-${i}" value="${p.img}" placeholder="ছবির লিংক">
+    <button onclick="saveEdit(${i})" style="width:100%;padding:10px;background:#25D366;border:none;border-radius:8px;font-weight:700;cursor:pointer">সেভ করুন</button>
+  </div>
+  `).join('');
+}
+// বাটন ঠিক করার ফাংশন
+function setCat(cat, btn){
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  window.currentCat = cat;
+  if(typeof showProducts === 'function'){
+    try{ showProducts(cat); } catch(e){ showProducts(); }
+  } else {
+    let cards = document.querySelectorAll('.product-card, .product, .card');
+    cards.forEach(c => {
+      if(cat === 'সব'){ c.style.display = ''; }
+      else {
+        if(c.innerText.includes(cat)){ c.style.display = ''; }
+        else { c.style.display = 'none'; }
+      }
+    });
+  }
+  let target = document.querySelector('.main') || document.getElementById('products');
+  if(target) target.scrollIntoView({behavior:'smooth'});
+}
+
+showProducts();
+</script>
+</body>
+</html>
